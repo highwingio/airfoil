@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sentry-ruby"
   spec.add_development_dependency "aws_lambda_ric"
   spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rubocop"
 end
