@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Enough structure to get our Lambda handlers in the air"
   # spec.homepage = "TODO: Put your gem's website or public repo URL here."
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
+  spec.required_ruby_version = ">= 3.2.1"
 
   #   spec.metadata["homepage_uri"] = spec.homepage
   # spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dry-monads"
   spec.add_dependency "railties"
   spec.add_dependency "sentry-ruby"
+  spec.add_dependency "datadog-lambda"
   spec.add_development_dependency "aws_lambda_ric"
   spec.add_development_dependency "rspec"
 end

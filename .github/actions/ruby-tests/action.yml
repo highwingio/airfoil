@@ -1,0 +1,25 @@
+name: Test Ruby
+description: Run tests
+
+inputs:
+  ruby_version:
+    description: Version of Ruby to use.
+    required: false
+    default: 3.2
+  working_dir:
+    description: Directory containing Ruby code.
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ inputs.ruby_version }}
+        bundler-cache: true
+        working-directory: .
+
+    - name: Run Specs
+      run: bundle exec rspec
+      shell: bash
+      working-directory: .
