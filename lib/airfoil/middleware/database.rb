@@ -1,3 +1,5 @@
+require "airfoil/middleware/base"
+
 module Airfoil
   module Middleware
     class Database < Airfoil::Middleware::Base
