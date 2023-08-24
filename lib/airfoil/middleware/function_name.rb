@@ -11,7 +11,8 @@ module Airfoil
 
       def call(env)
         context = env[:context]
-        if @function_names_to_match.include?(canonicalize_function_name(context.function_name))
+
+        if handles? context
           @handler_class.handle(env[:event], context)
         else
           @app.call(env)
@@ -19,6 +20,10 @@ module Airfoil
       end
 
       private
+
+      def handles?(context)
+        @function_names_to_match.include?(canonicalize_function_name(context.function_name))
+      end
 
       # Strip off the function suffix if present to allow for terraform/terratest to invoke lambdas with unique names that route to the same function
       # e.g. finalize-submission-testrun89YD36 => finalize-submission

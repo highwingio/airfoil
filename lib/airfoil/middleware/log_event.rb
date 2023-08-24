@@ -5,7 +5,7 @@ require "airfoil/middleware/base"
 
 module Airfoil
   module Middleware
-    class LogEvent < Middleware::Base
+    class LogEvent < Base
       include Dry::Monads[:maybe]
 
       def initialize(app, logger)

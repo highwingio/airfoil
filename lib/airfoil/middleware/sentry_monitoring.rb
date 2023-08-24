@@ -5,9 +5,7 @@ module Airfoil
   module Middleware
     class SentryMonitoring < Base
       def call(env)
-        context = env[:context]
-        event = env[:event]
-
+        event, context = env.values_at(:event, :context)
         sentry_trace_id = get_first_instance(event, "sentry_trace_id")
         identity = get_first_instance(event, "identity")
 

@@ -4,6 +4,11 @@ require "airfoil/middleware/base"
 module Airfoil
   module Middleware
     class SentryCatcher < Base
+      def initialize(app, logger)
+        super(app)
+        @logger = logger
+      end
+
       def call(env)
         @app.call(env)
       rescue => err
@@ -24,8 +29,8 @@ module Airfoil
           )
 
           Sentry.capture_exception(err)
-          Rails.logger.error(err)
-          raise err.class, "Error processing request."
+          @logger.error(err)
+          raise err
         end
       end
     end
