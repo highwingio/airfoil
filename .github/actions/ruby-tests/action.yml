@@ -9,6 +9,7 @@ inputs:
   working_dir:
     description: Directory containing Ruby code.
     required: true
+    default: .
 
 runs:
   using: "composite"
@@ -17,9 +18,9 @@ runs:
       with:
         ruby-version: ${{ inputs.ruby_version }}
         bundler-cache: true
-        working-directory: .
+        working-directory: ${{ inputs.working_dir }}
 
     - name: Run Specs
       run: bundle exec rspec
       shell: bash
-      working-directory: .
+      working-directory: ${{ inputs.working_dir }}
