@@ -13,6 +13,7 @@ jobs:
     name: Run Test Suite
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         root: [airfoil, datadog, activerecord, sentry]
     timeout-minutes: 5
