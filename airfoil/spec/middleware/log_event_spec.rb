@@ -4,6 +4,7 @@ require "airfoil/middleware/log_event"
 require "airfoil/cloudwatch_formatter"
 require "active_support/tagged_logging"
 require "active_support/logger"
+require "active_support/json/encoding"
 
 RSpec.describe Airfoil::Middleware::LogEvent do
   let(:logger) do

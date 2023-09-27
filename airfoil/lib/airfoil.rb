@@ -4,14 +4,10 @@ require "middleware"
 
 require_relative "airfoil/version"
 require_relative "airfoil/middleware/database"
-require_relative "airfoil/middleware/datadog"
 require_relative "airfoil/middleware/function_name"
 require_relative "airfoil/middleware/log_event"
 require_relative "airfoil/middleware/logger_tagging"
-require_relative "airfoil/middleware/sentry_catcher"
-require_relative "airfoil/middleware/sentry_monitoring"
 require_relative "airfoil/middleware/set_request_id"
-require_relative "airfoil/middleware/step_function"
 require_relative "airfoil/logger_patch"
 require_relative "airfoil/railtie" if defined?(Rails::Railtie)
 
