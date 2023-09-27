@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "airfoil"
-  spec.add_dependency "datadog-lambda"
+  spec.add_dependency "sentry-ruby"
 
   spec.add_development_dependency "aws_lambda_ric"
   spec.add_development_dependency "rspec"

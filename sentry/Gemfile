@@ -1,5 +1,4 @@
 source "http://rubygems.org"
 
 gemspec
-gem "ddtrace", require: false
 gem "livery", github: "highwingio/livery"
