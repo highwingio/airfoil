@@ -3,12 +3,12 @@
 require_relative "../airfoil/lib/airfoil/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "airfoil-datadog"
+  spec.name = "airfoil-sentry"
   spec.version = Airfoil::VERSION
   spec.authors = ["Highwing Engineering"]
   spec.email = ["engineering@highwing.io"]
 
-  spec.summary = "Airfoil middleware for Datadog"
+  spec.summary = "Airfoil middleware for Sentry"
   # spec.homepage = "TODO: Put your gem's website or public repo URL here."
   spec.required_ruby_version = ">= 3.2"
 
