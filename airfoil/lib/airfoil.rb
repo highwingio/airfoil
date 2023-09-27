@@ -3,7 +3,6 @@
 require "middleware"
 
 require_relative "airfoil/version"
-require_relative "airfoil/middleware/database"
 require_relative "airfoil/middleware/function_name"
 require_relative "airfoil/middleware/log_event"
 require_relative "airfoil/middleware/logger_tagging"
