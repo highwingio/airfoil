@@ -1,4 +1,4 @@
-require_relative "function_name"
+require "airfoil/middleware/function_name"
 
 module Airfoil
   module Middleware
