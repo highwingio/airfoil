@@ -21,15 +21,17 @@ module Airfoil
         puts "Received SIGTERM, shutting down gracefully..." # rubocop:disable Rails/Output
       end
 
+      logger = defined?(::Rails) ? Rails.logger : Logger.new($stdout, level: (ENV["LOG_LEVEL"] || :info).to_sym)
+
       ::Middleware::Builder.new { |b|
-        b.use Middleware::LoggerTagging, Rails.logger
+        if defined?(::Rails)
+          b.use Middleware::LoggerTagging, logger
+        end
         b.use Middleware::SetRequestId
-        b.use Middleware::Datadog
-        b.use Middleware::SentryCatcher, Rails.logger
-        b.use Middleware::SentryMonitoring
-        b.use Middleware::LogEvent, Rails.logger
+        # This is causing infinite recursion for some reason
+        # b.use Middleware::LogEvent, logger
         yield b
-      }.inject_logger(Rails.logger)
+      }.inject_logger(logger)
     end
   end
 end
