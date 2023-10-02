@@ -68,14 +68,9 @@ Add the `airfoil-sentry' gem to your Gemfile.This provides three middlewares:
 b.use Airfoil::Middleware::SentryCatcher
 ```
 
-- `SentryMonitoring` - instrument your function code for Sentry's performance monitoring (`require "airfoil/middleware/sentry_monitoring"`)
+- `SentryMonitoring` - instrument your function code for Sentry's performance monitoring
 ```ruby
-b.use Airfoil::Middleware::SentryCatcher
-```
-
-- `SentryMonitoring` - instrument your function code for Sentry's performance monitoring (`require "airfoil/middleware/sentry_monitoring"`)
-```ruby
-b.use Airfoil::Middleware::SentryCatcher
+b.use Airfoil::Middleware::SentryMonitoring
 ```
 
 ### Datadog
@@ -83,7 +78,7 @@ Add the `airfoil-datadog' gem to your Gemfile. This provides a single middleware
 
 - `Datadog` - wire up the Datadog Lambda SDK and report traces to it
 ```ruby
-b.use Airfoil::Middleware::SentryCatcher
+b.use Airfoil::Middleware::Datadog
 ```
 
 ### ActiveRecord
