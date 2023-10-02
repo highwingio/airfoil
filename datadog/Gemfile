@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
 gemspec
+gem "airfoil", path: "../airfoil"
 gem "ddtrace", require: false
 gem "livery", github: "highwingio/livery"
