@@ -61,7 +61,7 @@ Existing middleware include:
 There are additional middleware available as separate gems that provide specific functionality. They must be explicitly added to your middleware stack in `create_stack`.
 
 ### Sentry
-Add the `airfoil-sentry' gem to your Gemfile.This provides three middlewares:
+Add the `airfoil-sentry` gem to your Gemfile.This provides three middlewares:
 
 - `SentryCatcher` - catch exceptions and report them to Sentry, including context:
 ```ruby
@@ -74,7 +74,7 @@ b.use Airfoil::Middleware::SentryMonitoring
 ```
 
 ### Datadog
-Add the `airfoil-datadog' gem to your Gemfile. This provides a single middleware:
+Add the `airfoil-datadog` gem to your Gemfile. This provides a single middleware:
 
 - `Datadog` - wire up the Datadog Lambda SDK and report traces to it
 ```ruby
@@ -82,7 +82,7 @@ b.use Airfoil::Middleware::Datadog
 ```
 
 ### ActiveRecord
-Add the `airfoil-activerecord' gem to your Gemfile. This provides a single middleware:
+Add the `airfoil-activerecord` gem to your Gemfile. This provides a single middleware:
 
 - `DatabaseConnection` - Check a connection in/out and enable the query cache per handler
 ```ruby
