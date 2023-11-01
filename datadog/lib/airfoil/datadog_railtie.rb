@@ -1,10 +1,7 @@
-require "airfoil/cloudwatch_formatter"
 require "datadog/lambda"
 
 module Airfoil
-  class Railtie < Rails::Railtie
-    # Format logs for consistent parsing by Cloudwatch
-    config.log_formatter = Airfoil::CloudwatchFormatter.new
+  class DatadogRailtie < Rails::Railtie
     config.datadog_enabled = ENV.fetch("DATADOG_ENABLED", Rails.env.production?).to_s == "true"
 
     initializer "airfoil.datadog" do

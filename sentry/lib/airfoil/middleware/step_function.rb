@@ -1,11 +1,12 @@
-require_relative "function_name"
+require "airfoil/middleware/function_name"
 
 module Airfoil
   module Middleware
     class StepFunction < FunctionName
-      def initialize(app, handler_class, *function_names_to_match, retried_exceptions: [])
+      def initialize(app, handler_class, *function_names_to_match)
+        kwargs = function_names_to_match.last.is_a?(Hash) ? function_names_to_match.pop : {}
+        @retried_exceptions = (kwargs[:retried_exceptions] || []).map(&:to_s)
         super(app, handler_class, *function_names_to_match)
-        @retried_exceptions = retried_exceptions.map(&:to_s)
       end
 
       def call(env)

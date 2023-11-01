@@ -3,15 +3,10 @@
 require "middleware"
 
 require_relative "airfoil/version"
-require_relative "airfoil/middleware/database"
-require_relative "airfoil/middleware/datadog"
 require_relative "airfoil/middleware/function_name"
 require_relative "airfoil/middleware/log_event"
 require_relative "airfoil/middleware/logger_tagging"
-require_relative "airfoil/middleware/sentry_catcher"
-require_relative "airfoil/middleware/sentry_monitoring"
 require_relative "airfoil/middleware/set_request_id"
-require_relative "airfoil/middleware/step_function"
 require_relative "airfoil/logger_patch"
 require_relative "airfoil/railtie" if defined?(Rails::Railtie)
 
@@ -26,15 +21,17 @@ module Airfoil
         puts "Received SIGTERM, shutting down gracefully..." # rubocop:disable Rails/Output
       end
 
+      logger = defined?(::Rails) ? Rails.logger : Logger.new($stdout, level: (ENV["LOG_LEVEL"] || :info).to_sym)
+
       ::Middleware::Builder.new { |b|
-        b.use Middleware::LoggerTagging, Rails.logger
+        if defined?(::Rails)
+          b.use Middleware::LoggerTagging, logger
+        end
         b.use Middleware::SetRequestId
-        b.use Middleware::Datadog
-        b.use Middleware::SentryCatcher, Rails.logger
-        b.use Middleware::SentryMonitoring
-        b.use Middleware::LogEvent, Rails.logger
+        # This is causing infinite recursion for some reason
+        # b.use Middleware::LogEvent, logger
         yield b
-      }.inject_logger(Rails.logger)
+      }.inject_logger(logger)
     end
   end
 end

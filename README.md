@@ -54,9 +54,40 @@ Existing middleware include:
 
 - `FunctionName` - dispatch any calls made to a specific Lambda function (by name) to a specified handler class
 - `LogEvent` - log AWS events in a pretty format
-- `SentryCatcher` - catch exceptions and report them to Sentry, including context
-- `SentryMonitoring` - instrument your function code for Sentry's performance monitoring
 - `SetRequestId` - set the `AWS_REQUEST_ID` environment variable for your function code
+
+
+## Additional Middleware
+There are additional middleware available as separate gems that provide specific functionality. They must be explicitly added to your middleware stack in `create_stack`.
+
+### Sentry
+Add the `airfoil-sentry` gem to your Gemfile.This provides three middlewares:
+
+- `SentryCatcher` - catch exceptions and report them to Sentry, including context:
+```ruby
+b.use Airfoil::Middleware::SentryCatcher
+```
+
+- `SentryMonitoring` - instrument your function code for Sentry's performance monitoring
+```ruby
+b.use Airfoil::Middleware::SentryMonitoring
+```
+
+### Datadog
+Add the `airfoil-datadog` gem to your Gemfile. This provides a single middleware:
+
+- `Datadog` - wire up the Datadog Lambda SDK and report traces to it
+```ruby
+b.use Airfoil::Middleware::Datadog
+```
+
+### ActiveRecord
+Add the `airfoil-activerecord` gem to your Gemfile. This provides a single middleware:
+
+- `DatabaseConnection` - Check a connection in/out and enable the query cache per handler
+```ruby
+b.use Airfoil::Middleware::DatabaseConnection
+```
 
 ## Development
 

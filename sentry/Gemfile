@@ -1,0 +1,5 @@
+source "http://rubygems.org"
+
+gemspec
+gem "airfoil", path: "../airfoil"
+gem "livery", github: "highwingio/livery"

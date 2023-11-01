@@ -12,8 +12,14 @@ jobs:
   run-tests:
     name: Run Test Suite
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        root: [airfoil, datadog, activerecord, sentry]
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@main
       - name: RSpec
         uses: ./.github/actions/ruby-tests
+        with:
+          working_dir: ${{ matrix.root }}
