@@ -11,7 +11,7 @@ module Airfoil
         ::Datadog::Lambda.configure_apm do |c|
           c.env = ENV.fetch("SENTRY_ENVIRONMENT", Rails.env).dasherize
           # downscasing first ensures we don't attempt to snake case things that don't already have dashes
-          c.service = ENV.fetch("AWS_LAMBDA_FUNCTION_NAME", "brokersuite").downcase.underscore
+          c.service = (ENV["AWS_LAMBDA_FUNCTION_NAME"] || ENV["APP_NAME"] || "brokersuite").downcase.underscore
 
           # Set trace rate via DD_TRACE_SAMPLE_RATE
           c.tracing.enabled = true
