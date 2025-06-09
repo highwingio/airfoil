@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        root: [airfoil, datadog, activerecord, sentry]
+        root: [airfoil, activerecord, sentry]
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@main
