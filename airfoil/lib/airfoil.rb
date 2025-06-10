@@ -12,7 +12,7 @@ require_relative "airfoil/railtie" if defined?(Rails::Railtie)
 
 module Airfoil
   class << self
-    def create_stack(logger)
+    def create_stack(logger=nil)
       # ensure that STDOUT streams are synchronous so we don't lose logs
       $stdout.sync = true
 
