@@ -1,4 +1,5 @@
 # Airfoil
+
 _Enough structure to get our Lambda handlers in the air._
 
 Airfoil is curated middleware stack that abstracts away common infrastructure
@@ -14,11 +15,11 @@ gem 'airfoil'
 
 And then execute:
 
-    $ bundle install
+    bundle install
 
 Or install it yourself as:
 
-    $ gem install airfoil
+    gem install airfoil
 
 ## Usage
 
@@ -56,35 +57,32 @@ Existing middleware include:
 - `LogEvent` - log AWS events in a pretty format
 - `SetRequestId` - set the `AWS_REQUEST_ID` environment variable for your function code
 
-
 ## Additional Middleware
+
 There are additional middleware available as separate gems that provide specific functionality. They must be explicitly added to your middleware stack in `create_stack`.
 
 ### Sentry
+
 Add the `airfoil-sentry` gem to your Gemfile.This provides three middlewares:
 
 - `SentryCatcher` - catch exceptions and report them to Sentry, including context:
+
 ```ruby
 b.use Airfoil::Middleware::SentryCatcher
 ```
 
 - `SentryMonitoring` - instrument your function code for Sentry's performance monitoring
+
 ```ruby
 b.use Airfoil::Middleware::SentryMonitoring
 ```
 
-### Datadog
-Add the `airfoil-datadog` gem to your Gemfile. This provides a single middleware:
-
-- `Datadog` - wire up the Datadog Lambda SDK and report traces to it
-```ruby
-b.use Airfoil::Middleware::Datadog
-```
-
 ### ActiveRecord
+
 Add the `airfoil-activerecord` gem to your Gemfile. This provides a single middleware:
 
 - `DatabaseConnection` - Check a connection in/out and enable the query cache per handler
+
 ```ruby
 b.use Airfoil::Middleware::DatabaseConnection
 ```
